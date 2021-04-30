@@ -44,8 +44,8 @@ def make_datum(img, label):
         label=label,
         data=np.rollaxis(img, 2).tostring())
 
-train_lmdb = '/home/ubuntu/facial_expression/input/train_lmdb'
-validation_lmdb = '/home/ubuntu/facial_expression/input/validation_lmdb'
+train_lmdb = '/home/ubuntu/senior_design/facial_expression/input/train_lmdb'
+validation_lmdb = '/home/ubuntu/senior_design/facial_expression/input/validation_lmdb'
 
 os.system('rm -rf  ' + train_lmdb)
 os.system('rm -rf  ' + validation_lmdb)
