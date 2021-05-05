@@ -38,7 +38,7 @@ def transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT):
 def make_datum(img, label):
     #image is numpy.ndarray format. BGR instead of RGB
     return caffe_pb2.Datum(
-        channels=3,
+        channels=1,
         width=IMAGE_WIDTH,
         height=IMAGE_HEIGHT,
         label=label,
