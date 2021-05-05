@@ -1,11 +1,25 @@
 Danxu Wang  
 Senior Project  
 Facial expression reader and player  
-files:  
-1.Two datasets for facial expression and eye  
-2.Model Definition "caffenet_train_val_1.prototxt"  
-3.Solver Definition "solver_1.prototxt"  
-4.Model architecture png  
-5.create learning curve (plot.py)  
-6.Learning curve png  
+Files:  
+  1.Two datasets  
+      Facial expression  
+      Eye  
+  3.create learning curve script (plot.py)  
+Two folder:  
+  FE:  
+    Model Definition "caffenet_train_val_1.prototxt"  
+    Solver Definition "solver_1.prototxt"  
+    Model architecture png  
+    Learning curve png  
+  E_Y_E:  
+    Model Definition "caffenet_train_val_1.prototxt"  
+    Solver Definition "solver_1.prototxt"  
+    Model architecture png  
+    Learning curve png  
 
+
+download link for model file  
+Facial_expression:  
+https://transfer.sh/oBqOY/model_file.zip  
+Eye:
