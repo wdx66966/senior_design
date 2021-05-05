@@ -3,7 +3,7 @@ Danxu Wang
 Senior Project  
 Facial expression reader and player  
 Files:  
-  1.Two datasets  
+  + 1.Two datasets  
       Facial expression  
       Eye  
   3.create learning curve script (plot.py)  
