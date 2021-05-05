@@ -1,14 +1,3 @@
-'''
-Title           :plot_learning_curve.py
-Description     :This script generates learning curves for caffe models
-Author          :Adil Moujahid
-Date Created    :20160619
-Date Modified   :20160619
-version         :0.1
-usage           :python plot_learning_curve.py model_1_train.log ./caffe_model_1_learning_curve.png
-python_version  :2.7.11
-'''
-
 import os
 import sys
 import subprocess
@@ -21,7 +10,7 @@ import matplotlib.pylab as plt
 plt.style.use('ggplot')
 
 
-caffe_path = '/home/ubuntu/caffe/'
+caffe_path = '/home/ubuntu/src/caffe_python_3/'
 model_log_path = sys.argv[1]
 learning_curve_path = sys.argv[2]
 
