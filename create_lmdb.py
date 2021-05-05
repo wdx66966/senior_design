@@ -27,8 +27,9 @@ IMAGE_HEIGHT = 227
 def transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT):
 
     #Histogram Equalization
-    img = cv2.equalizeHist(img)
-
+    img[:, :, 0] = cv2.equalizeHist(img[:, :, 0])
+    img[:, :, 1] = cv2.equalizeHist(img[:, :, 1])
+    img[:, :, 2] = cv2.equalizeHist(img[:, :, 2])
     #Image Resizing
     img = cv2.resize(img, (img_width, img_height), interpolation = cv2.INTER_CUBIC)
 
@@ -38,7 +39,7 @@ def transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT):
 def make_datum(img, label):
     #image is numpy.ndarray format. BGR instead of RGB
     return caffe_pb2.Datum(
-        channels=1,
+        channels=3,
         width=IMAGE_WIDTH,
         height=IMAGE_HEIGHT,
         label=label,
@@ -51,8 +52,8 @@ os.system('rm -rf  ' + train_lmdb)
 os.system('rm -rf  ' + validation_lmdb)
 
 
-train_data = [img for img in glob.glob("../input/train/*jpg")]
-test_data = [img for img in glob.glob("../input/validation/*jpg")]
+train_data = [img for img in glob.glob("*/input/train/*/*jpg")]
+test_data = [img for img in glob.glob("*/input/validation/*/*jpg")]
 
 #Shuffle train_data
 random.shuffle(train_data)
@@ -81,7 +82,7 @@ with in_db.begin(write=True) as in_txn:
         else:
             label = 6
         datum = make_datum(img, label)
-        in_txn.put('{:0>5d}'.format(in_idx), datum.SerializeToString())
+        in_txn.put('{:0>5d}'.format(in_idx).encode(), datum.SerializeToString())
 in_db.close()
 
 
@@ -109,7 +110,7 @@ with in_db.begin(write=True) as in_txn:
         else:
             label = 6
         datum = make_datum(img, label)
-        in_txn.put('{:0>5d}'.format(in_idx), datum.SerializeToString())
+        in_txn.put('{:0>5d}'.format(in_idx).encode(), datum.SerializeToString())
 in_db.close()
 
 print ("\nFinished processing all images")
