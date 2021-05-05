@@ -7,5 +7,5 @@ files:
 3.Solver Definition "solver_1.prototxt"  
 4.Model architecture png  
 5.create learning curve (plot.py)  
-6.Learning curve jpg  
+6.Learning curve png  
 
