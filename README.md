@@ -6,5 +6,6 @@ files:
 2.Model Definition "caffenet_train_val_1.prototxt"  
 3.Solver Definition "solver_1.prototxt"  
 4.Model architecture png  
-5.Learning curve  
+5.create learning curve (plot.py)  
+6.Learning curve jpg  
 
