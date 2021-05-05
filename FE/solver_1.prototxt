@@ -1,4 +1,4 @@
-net: "/home/ubuntu/senior_design/caffenet_train_val_1.prototxt"
+net: "/home/ubuntu/senior_design/FE/caffenet_train_val_1.prototxt"
 test_iter: 1000
 test_interval: 1000
 base_lr: 0.001
@@ -10,5 +10,5 @@ max_iter: 40000
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 5000
-snapshot_prefix: "/home/ubuntu/senior_design/model_architecture"
+snapshot_prefix: "/home/ubuntu/senior_design/FE/model_architecture"
 solver_mode: GPU
