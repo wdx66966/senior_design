@@ -45,8 +45,8 @@ def make_datum(img, label):
         label=label,
         data=np.rollaxis(img, 2).tostring())
 
-train_lmdb = '/home/ubuntu/senior_design/facial_expression/input/train_lmdb'
-validation_lmdb = '/home/ubuntu/senior_design/facial_expression/input/validation_lmdb'
+train_lmdb = '/home/ubuntu/senior_design/FE/facial_expression/input/train_lmdb'
+validation_lmdb = '/home/ubuntu/senior_design/FE/facial_expression/input/validation_lmdb'
 
 os.system('rm -rf  ' + train_lmdb)
 os.system('rm -rf  ' + validation_lmdb)
@@ -90,7 +90,7 @@ print ("\nCreating validation_lmdb")
 
 in_db = lmdb.open(validation_lmdb, map_size=int(1e12))
 with in_db.begin(write=True) as in_txn:
-    for in_idx, img_path in enumerate(train_data):
+    for in_idx, img_path in enumerate(test_data):
         if in_idx % 6 != 0:
             continue
         img = cv2.imread(img_path, cv2.IMREAD_COLOR)
