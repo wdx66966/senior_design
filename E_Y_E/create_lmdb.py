@@ -45,15 +45,15 @@ def make_datum(img, label):
         label=label,
         data=np.rollaxis(img, 2).tostring())
 
-train_lmdb = '/home/ubuntu/senior_design/eye/input/train_lmdb'
-validation_lmdb = '/home/ubuntu/senior_design/eye/input/validation_lmdb'
+train_lmdb = '/home/ubuntu/senior_design/E_Y_E/eye/input/train_lmdb'
+validation_lmdb = '/home/ubuntu/senior_design/E_Y_E/eye/input/validation_lmdb'
 
 os.system('rm -rf  ' + train_lmdb)
 os.system('rm -rf  ' + validation_lmdb)
 
 
-train_data = [img for img in glob.glob("eye/input/train/*/*jpg")]
-test_data = [img for img in glob.glob("eye/input/validation/*/*jpg")]
+train_data = [img for img in glob.glob("eye/input/train/*/*png")]
+test_data = [img for img in glob.glob("eye/input/test/*/*png")]
 
 #Shuffle train_data
 random.shuffle(train_data)
@@ -80,8 +80,8 @@ print ("\nCreating validation_lmdb")
 
 in_db = lmdb.open(validation_lmdb, map_size=int(1e12))
 with in_db.begin(write=True) as in_txn:
-    for in_idx, img_path in enumerate(train_data):
-        if in_idx % 6 != 0:
+    for in_idx, img_path in enumerate(test_data):
+        if in_idx %  6 == 0:
             continue
         img = cv2.imread(img_path, cv2.IMREAD_COLOR)
         img = transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT)
@@ -93,4 +93,3 @@ with in_db.begin(write=True) as in_txn:
         in_txn.put('{:0>5d}'.format(in_idx).encode(), datum.SerializeToString())
 in_db.close()
 
-print ("\nFinished processing all images")
