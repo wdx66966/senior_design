@@ -22,7 +22,9 @@ Facial expression reader and player
     + create learning curve script (plot.py) 
 
 download link for model file  
+pretrain weight file:
+https://transfer.sh/2YYrY/bvlc_reference_caffenet.caffemodel
 Facial_expression:  
-https://transfer.sh/oBqOY/model_file.zip  
+
 Eye:
 '''
