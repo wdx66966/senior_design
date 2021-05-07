@@ -357,10 +357,10 @@ layer {
   }
 }
 layer {
-  name: "fc8"
+  name: "fc8-FE"
   type: "InnerProduct"
   bottom: "fc7"
-  top: "fc8"
+  top: "fc8-FE"
   param {
     lr_mult: 1
     decay_mult: 1
@@ -384,7 +384,7 @@ layer {
 layer {
   name: "accuracy"
   type: "Accuracy"
-  bottom: "fc8"
+  bottom: "fc8-FE"
   bottom: "label"
   top: "accuracy"
   include {
@@ -394,7 +394,7 @@ layer {
 layer {
   name: "loss"
   type: "SoftmaxWithLoss"
-  bottom: "fc8"
+  bottom: "fc8-FE"
   bottom: "label"
   top: "loss"
 }
