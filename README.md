@@ -23,7 +23,6 @@ Facial expression reader and player
 
 download link for model file  
 pretrain weight file:
-https://transfer.sh/2YYrY/bvlc_reference_caffenet.caffemodel
 Facial_expression:  
 
 Eye:
