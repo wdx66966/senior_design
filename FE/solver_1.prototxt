@@ -1,4 +1,4 @@
-net: "/home/ubuntu/senior_design/FE/caffenet_train_val_1.prototxt"
+net: "/home/ubuntu/senior_design/FE/train_val-resnet50.prototxt"
 test_iter: 160
 test_interval: 500
 base_lr: 0.001
