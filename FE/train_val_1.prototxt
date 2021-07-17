@@ -1,45 +1,49 @@
-  param {
-    lr_mult: 1
-    decay_mult: 1
+ name: "CaffeNet"
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TRAIN
   }
-  param {
-    lr_mult: 2
-    decay_mult: 0
+  transform_param {
+    mirror: true
+    crop_size: 227
+    mean_file: "/home/ubuntu/senior_design/FE/CK+_JAFFE/input/mean.binaryproto"
   }
-  convolution_param {
-    num_output: 96
-    kernel_size: 11
-    stride: 4
-    weight_filler {
-      type: "gaussian"
-      std: 0.01
-    }
-    bias_filler {
-      type: "constant"
-      value: 0
-    }
+
+  data_param {
+    source: "/home/ubuntu/senior_design/FE/CK+_JAFFE/input/train_lmdb"
+    batch_size: 256
+    backend: LMDB
   }
 }
 layer {
-  name: "relu1"
-  type: "ReLU"
-  bottom: "conv1"
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  transform_param {
+    mirror: false
+    crop_size: 227
+    mean_file: "/home/ubuntu/senior_design/FE/CK+_JAFFE/input/mean.binaryproto"
+  }
+
+  data_param {
+    source: "/home/ubuntu/senior_design/FE/CK+_JAFFE/input/validation_lmdb"
+    batch_size: 50
+    backend: LMDB
+  }
+}
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
   top: "conv1"
-}
-layer {
-  name: "pool1"
-  type: "Pooling"
-  bottom: "conv1"
-  top: "pool1"
-  pooling_param {
-    pool: MAX
-    kernel_size: 3
-    stride: 2
-  }
-}
-layer {
-  name: "norm1"
-  type: "LRN"
   param {
     lr_mult: 1
     decay_mult: 1
@@ -352,7 +356,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 2
+    num_output: 7
     weight_filler {
       type: "gaussian"
       std: 0.01
@@ -379,4 +383,4 @@ layer {
   bottom: "fc8-ck"
   bottom: "label"
   top: "loss"
-}                                                                                                          127,3         37%
+}
