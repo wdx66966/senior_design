@@ -15,13 +15,9 @@ IMAGE_HEIGHT = 227
 def transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT):
 
     #Histogram Equalization
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img2 = np.zeros_like(img)
-    img2[:,:,0] = gray
-    img2[:,:,1] = gray
-    img2[:,:,2] = gray
     #Image Resizing
-    img2 = cv2.resize(img, (img_width, img_height), interpolation = cv2.INTER_CUBIC)
+    gray = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+    img2 = cv2.resize(gray, (img_width, img_height), interpolation = cv2.INTER_CUBIC)
 
     return img2
 def make_datum(img, label):
@@ -35,15 +31,15 @@ def make_datum(img, label):
 
 #train_lmdb = '/home/ubuntu/senior_design/FE/facial_expression/input/train_lmdb'
 #validation_lmdb = '/home/ubuntu/senior_design/FE/facial_expression/input/validation_lmdb'
-train_lmdb = '/home/ubuntu/senior_design/FE/CK+_JAFFE/input/train_lmdb'
-validation_lmdb = '/home/ubuntu/senior_design/FE/CK+_JAFFE/input/validation_lmdb'
+train_lmdb = '/home/ubuntu/senior_design/FE/CK+_JAFFE_KDEF/input/train_lmdb'
+validation_lmdb = '/home/ubuntu/senior_design/FE/CK+_JAFFE_KDEF/input/validation_lmdb'
 
 
 os.system('rm -rf  ' + train_lmdb)
 os.system('rm -rf  ' + validation_lmdb)
 
-train_data = [img for img in glob.glob("CK+_JAFFE/input/train/*/*")]
-test_data = [img for img in glob.glob("CK+_JAFFE/input/validation/*/*")]
+train_data = [img for img in glob.glob("CK+_JAFFE_KDEF/input/train/*/*")]
+test_data = [img for img in glob.glob("CK+_JAFFE_KDEF/input/validation/*/*")]
 
 #Shuffle train_data
 random.shuffle(train_data)
@@ -53,7 +49,8 @@ x=0
 in_db = lmdb.open(train_lmdb, map_size=int(1e12))
 with in_db.begin(write=True) as in_txn:
     for in_idx, img_path in enumerate(train_data):
-        img = cv2.imread(img_path, cv2.IMREAD_COLOR)
+        img = cv2.imread(img_path,cv2.IMREAD_GRAYSCALE)
+        print("image path:",img_path)
         img = transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT)
         if 'anger' in img_path:
             label = 0
@@ -79,7 +76,8 @@ print ("\nCreating validation_lmdb")
 in_db = lmdb.open(validation_lmdb, map_size=int(1e12))
 with in_db.begin(write=True) as in_txn:
     for in_idx, img_path in enumerate(test_data):
-        img = cv2.imread(img_path, cv2.IMREAD_COLOR)
+        img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+        print("image path:",img_path)
         img = transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT)
         if 'anger' in img_path:
             label = 0
@@ -98,6 +96,4 @@ with in_db.begin(write=True) as in_txn:
         datum = make_datum(img, label)
         in_txn.put('{:0>5d}'.format(in_idx).encode(), datum.SerializeToString())
 in_db.close()
-
-
 
