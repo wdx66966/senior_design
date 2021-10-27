@@ -15,8 +15,12 @@ IMAGE_HEIGHT = 227
 def transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT):
 
     #Histogram Equalization
+    
     #Image Resizing
     gray = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+    gray[:, :, 0] = cv2.equalizeHist(gray[:, :, 0])
+    gray[:, :, 1] = cv2.equalizeHist(gray[:, :, 1])
+    gray[:, :, 2] = cv2.equalizeHist(gray[:, :, 2])
     img2 = cv2.resize(gray, (img_width, img_height), interpolation = cv2.INTER_CUBIC)
 
     return img2
