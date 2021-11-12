@@ -1,6 +1,6 @@
 1. source activate caffe_p35
 2. git clone address
-3. cd senior_design
+3. cd /senior_design/E_Y_E
 4. pip install lmdb
 5. pip install pydot
 6. wget http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel (option base on what network you use)
