@@ -1,14 +1,3 @@
-'''
-Title           :create_lmdb.py
-Description     :This script divides the training images into 2 sets and stores them in lmdb databases for training and validation.
-Author          :Adil Moujahid
-Date Created    :20160619
-Date Modified   :20160625
-version         :0.2
-usage           :python create_lmdb.py
-python_version  :2.7.11
-'''
-
 import os
 import glob
 import random
@@ -26,8 +15,12 @@ IMAGE_HEIGHT = 227
 
 def transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT):
 
+    gray = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+    gray[:, :, 0] = cv2.equalizeHist(gray[:, :, 0])
+    gray[:, :, 1] = cv2.equalizeHist(gray[:, :, 1])
+    gray[:, :, 2] = cv2.equalizeHist(gray[:, :, 2])
     #Image Resizing
-    img = cv2.resize(img, (img_width, img_height), interpolation = cv2.INTER_CUBIC)
+    img = cv2.resize(gray, (img_width, img_height), interpolation = cv2.INTER_CUBIC)
 
     return img
 
@@ -61,7 +54,8 @@ with in_db.begin(write=True) as in_txn:
     for in_idx, img_path in enumerate(train_data):
         if in_idx %  6 == 0:
             continue
-        img = cv2.imread(img_path, cv2.IMREAD_COLOR)
+        img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+        
         img = transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT)
         if 'Open_Eyes' in img_path:
             label = 0
@@ -79,7 +73,7 @@ with in_db.begin(write=True) as in_txn:
     for in_idx, img_path in enumerate(test_data):
         if in_idx %  6 == 0:
             continue
-        img = cv2.imread(img_path, cv2.IMREAD_COLOR)
+        img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
         img = transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT)
         if 'Open_Eyes' in img_path:
             label = 0
