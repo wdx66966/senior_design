@@ -2,23 +2,21 @@ name: "VGG_ILSVRC_16_layers"
 layer {
   name: "data"
   type: "Data"
+  top: "data"
+  top: "label"
   include {
     phase: TRAIN
   }
  transform_param {
     crop_size: 224
-    mean_value: 104
-    mean_value: 117
-    mean_value: 123
+    mean_file: "/home/ubuntu/senior_design/E_Y_E/eye/input/mean.binaryproto"
     mirror: true
  }
  data_param {
-    source: "data_set/train_lmdb"
+    source: "/home/ubuntu/senior_design/E_Y_E/eye/input/train_lmdb"
     batch_size: 128
     backend: LMDB
   }
-  top: "data"
-  top: "label"
 }
 layer {
   name: "data"
@@ -28,13 +26,11 @@ layer {
   }
  transform_param {
     crop_size: 224
-    mean_value: 104
-    mean_value: 117
-    mean_value: 123
+    mean_file: "/home/ubuntu/senior_design/E_Y_E/eye/input/mean.binaryproto"
     mirror: false
  }
  data_param {
-    source: "data_set/val_lmdb"
+    source: "/home/ubuntu/senior_design/E_Y_E/eye/input/validation_lmdb"
     batch_size: 32
     backend: LMDB
   }
@@ -478,24 +474,10 @@ layer {
   top: "loss/loss"
 }
 layer {
-  name: "accuracy/top1"
+  name: "accuracy"
   type: "Accuracy"
   bottom: "fc8"
   bottom: "label"
-  top: "accuracy@1"
+  top: "accuracy"
   include: { phase: TEST }
-  accuracy_param {
-    top_k: 1
-  }
-}
-layer {
-  name: "accuracy/top5"
-  type: "Accuracy"
-  bottom: "fc8"
-  bottom: "label"
-  top: "accuracy@5"
-  include: { phase: TEST }
-  accuracy_param {
-    top_k: 5
-  }
 }
