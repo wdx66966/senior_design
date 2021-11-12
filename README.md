@@ -3,10 +3,10 @@ Danxu Wang
 Senior Project  
 Facial expression reader and player  
 + Files:  
-  + 1.Two approches 
+  + 1.Two folder 
      + Facial expression  
      + Eye    
-+ Two folder:  
++ abstract:  
   + FE:  databeases: (FER2013, JAFFE(image), JK+(image),KDEF(front face))
     + Model Definition "caffenet_train_val_1.prototxt"  
     + Solver Definition "solver_1.prototxt"   
@@ -14,6 +14,5 @@ Facial expression reader and player
   + E_Y_E:  
     + Model Definition "caffenet_train_val_1.prototxt"  
     + Solver Definition "solver_1.prototxt"  
-    + Model architecture png  
-    + Learning curve png  
+    + Model_architecture png
     + create learning curve script (plot.py) 
