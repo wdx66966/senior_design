@@ -2,9 +2,7 @@ import os
 import glob
 import random
 import numpy as np
-
 import cv2
-
 import caffe
 from caffe.proto import caffe_pb2
 import lmdb
