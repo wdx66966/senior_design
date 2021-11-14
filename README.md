@@ -23,7 +23,8 @@ Project implements a workable script with GUI in RPI that performs the following
 + Files:  
   + 1.Two folder 
      + Facial expression  
-     + Eye    
+     + Eye
+     + launch script in RPI    
 + abstract:  
   + FE:  databeases: (FER2013, JAFFE(image), JK+(image),KDEF(front face))
     + Model Definition "caffenet_train_val_1.prototxt"  
