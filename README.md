@@ -2,6 +2,7 @@
 Danxu Wang  
 Senior Project  
 Facial expression reader and player 
+
 The project is using CNN to train a workable neural network model from three databases (FER2013, JAFFEJK+ and KDEF) and over 30000+ image. It is performed and implemented in Raspberry Pi 4B, real time camera and 5 ” touchscreen using Python, OpenCV and several necessary packages. 
 The program takes a snapshot from the camera and determines whether the eyes are open or close while detecting the face expression in real time. 
 Project implements a workable script with GUI in RPI that performs the following  functions:
