@@ -2,7 +2,7 @@
 Danxu Wang  
 Senior Project  
 FACIAL EXPRESSION RECOGNITION AND ALERT SYSTEM
-Department of Electrical and Computer Engineering,
+\n Department of Electrical and Computer Engineering,
 University of Nevada, Las Vegas 
 
 Instructor: 						Dr. Ming Zhu
