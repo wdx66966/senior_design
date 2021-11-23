@@ -2,7 +2,7 @@ Step: I should just write a bash.
 
 1. pip install lmdb
 2. pip install pydot
-3. cd /senior_project/FE
+3. cd senior_design/FE/
 4. wget http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel
 5. python create_lmdb.py
 6. /home/ubuntu/src/caffe_python_3/build/tools/compute_image_mean -backend=lmdb /home/ubuntu/senior_design/FE/CK+_JAFFE_KDEF/input/train_lmdb /home/ubuntu/senior_design/FE/CK+_JAFFE_KDEF/input/mean.binaryproto
