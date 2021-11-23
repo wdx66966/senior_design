@@ -28,7 +28,7 @@ def transform_img(img, img_width=IMAGE_WIDTH, img_height=IMAGE_HEIGHT):
     #Histogram Equalization
     
     #Image Resizing
-    gray = cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
+    gray = cv2.cvtColor(img,cv2.cv2.COLOR_BGR2GRAY)
     img2 = np.zeros_like(img)
     img2[:, :, 0] = gray
     img2[:, :, 1] = gray
