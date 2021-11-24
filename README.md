@@ -3,6 +3,9 @@ Danxu Wang
 Senior Project  
 FACIAL EXPRESSION RECOGNITION AND ALERT SYSTEM
 
+RPI Launch_script:
+https://drive.google.com/file/d/16-9jM7aWEW57_n3tpd1wrnry3qjmYXu-/view?usp=sharing
+
 Department of Electrical and Computer Engineering,
 University of Nevada, Las Vegas 
 
